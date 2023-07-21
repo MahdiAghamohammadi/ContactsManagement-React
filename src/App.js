@@ -1,16 +1,14 @@
+import Navbar from "./components/Navbar";
+import Contacts from "./components/Contact/Concats";
 import "./App.css";
 
 const App = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>Contact Management</p>
-
-        {/* <span className="fa fa-user"></span> */}
-        <button className="btn btn-primary">click me</button>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App">
+            <Navbar/>
+            <Contacts />
+        </div>
+    );
 };
 
 export default App;
