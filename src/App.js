@@ -1,14 +1,16 @@
+import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Contacts from "./components/Contact/Concats";
 import "./App.css";
 
 const App = () => {
-    return (
-        <div className="App">
-            <Navbar/>
-            <Contacts />
-        </div>
-    );
+  const [contacts, setcontacts] = useState([]);
+  return (
+    <div className="App">
+      <Navbar />
+      <Contacts contacts={contacts} />
+    </div>
+  );
 };
 
 export default App;
