@@ -4,11 +4,12 @@ import Contacts from "./components/Contact/Concats";
 import "./App.css";
 
 const App = () => {
-  const [contacts, setcontacts] = useState([]);
+  const [contacts, setContacts] = useState([]);
+  const [loading, setLoading] = useState(true);
   return (
     <div className="App">
       <Navbar />
-      <Contacts contacts={contacts} />
+      <Contacts contacts={contacts} loading={loading} />
     </div>
   );
 };
