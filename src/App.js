@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { Navbar, Contacts } from "./components";
+import { Routes, Route, Navigate } from "react-router-dom";
+import {
+  Navbar,
+  Contacts,
+  AddContact,
+  ViewContact,
+  EditContact,
+} from "./components";
 import "./App.css";
 
 const App = () => {
@@ -8,7 +15,17 @@ const App = () => {
   return (
     <div className="App">
       <Navbar />
-      <Contacts contacts={contacts} loading={loading} />
+      <Routes>
+        <Route path="/" element={<Navigate to="/contacts" />} />
+        <Route
+          path="/contacts"
+          element={<Contacts contacts={contacts} loading={loading} />}
+        >
+          <Route path="add" element={<AddContact />} />
+          <Route path=":contactId" element={<ViewContact />} />
+          <Route path="edit/:contactId" element={<EditContact />} />
+        </Route>
+      </Routes>
     </div>
   );
 };
