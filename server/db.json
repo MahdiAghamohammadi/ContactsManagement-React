@@ -1,0 +1,44 @@
+{
+  "contacts": [
+    {
+      "fullname": "Mahid Aghamohammadi",
+      "photo": "https://avatars.githubusercontent.com/u/59286547?v=4",
+      "mobile": "09045551212",
+      "email": "mahdi@gmail.com",
+      "job": "developer",
+      "group": "1",
+      "id": 1
+    },
+    {
+      "fullname": "Masoud Karimi",
+      "photo": "https://avatars.githubusercontent.com/u/54736752?v=4",
+      "mobile": "03351112525",
+      "email": "masoud@gmail.com",
+      "job": "developer",
+      "group": "2",
+      "id": 2
+    }
+  ],
+  "groups": [
+    {
+      "id": "1",
+      "name": "Colleague"
+    },
+    {
+      "id": "2",
+      "name": "Friend"
+    },
+    {
+      "id": "3",
+      "name": "Relatives"
+    },
+    {
+      "id": "4",
+      "name": "Service"
+    },
+    {
+      "id": "5",
+      "name": "Familiar"
+    }
+  ]
+}
