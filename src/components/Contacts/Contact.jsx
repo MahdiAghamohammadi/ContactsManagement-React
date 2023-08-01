@@ -1,7 +1,7 @@
 import React from "react";
 import { CURRENTLINE, CYAN, ORANGE, PURPLE, RED } from "../../helpers/colors";
 
-const Contact = () => {
+const Contact = ({ contact }) => {
   return (
     <div className="col-md-6">
       <div style={{ backgroundColor: CURRENTLINE }} className="card my-2 ">
@@ -9,8 +9,8 @@ const Contact = () => {
           <div className="row align-items-center d-flex justify-content-around">
             <div className="col-md-4 col-sm-4">
               <img
-                src="https://placehold.co/200"
-                alt=""
+                src={contact.photo}
+                alt={contact.fullname}
                 style={{ border: `1px ${PURPLE}` }}
                 className="img-fluid rounded"
               />
@@ -18,14 +18,13 @@ const Contact = () => {
             <div className="col-md-7 col-sm-7">
               <ul className="list-group">
                 <li className="list-group-item list-group-item-dark">
-                  Full Name:{" "}
-                  <span className="fw-bold">Mahdi Aghamohammadi</span>
+                  Full Name: <span className="fw-bold">{contact.fullname}</span>
                 </li>
                 <li className="list-group-item list-group-item-dark">
-                  Mobile: <span className="fw-bold">09033028413</span>
+                  Mobile: <span className="fw-bold">{contact.mobile}</span>
                 </li>
                 <li className="list-group-item list-group-item-dark">
-                  Email: <span className="fw-bold">mahdi@gmail.com</span>
+                  Email: <span className="fw-bold">{contact.email}</span>
                 </li>
               </ul>
             </div>
