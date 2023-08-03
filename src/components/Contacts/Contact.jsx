@@ -1,4 +1,3 @@
-import React from "react";
 import { CURRENTLINE, CYAN, ORANGE, PURPLE, RED } from "../../helpers/colors";
 
 const Contact = ({ contact }) => {
