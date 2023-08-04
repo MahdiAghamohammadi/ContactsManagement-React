@@ -111,7 +111,15 @@ const App = () => {
           }
         />
         <Route path="/contacts/:contactId" element={<ViewContact />} />
-        <Route path="/contacts/edit/:contactId" element={<EditContact />} />
+        <Route
+          path="/contacts/edit/:contactId"
+          element={
+            <EditContact
+              forceRender={forceRender}
+              setForceRender={setForceRender}
+            />
+          }
+        />
       </Routes>
     </div>
   );
