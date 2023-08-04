@@ -28,6 +28,7 @@ const App = () => {
   });
   const [groups, setGroups] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [forceRender, setForceRender] = useState(false);
 
   const navigate = useNavigate();
 
@@ -50,12 +51,30 @@ const App = () => {
     })();
   }, []);
 
+  useEffect(() => {
+    (async () => {
+      try {
+        setLoading(true);
+        // fetch data
+        const { data: contactsData } = await getAllContacts();
+        // set data
+        setContacts(contactsData);
+
+        setLoading(false);
+      } catch (e) {
+        console.log(e.message);
+        setLoading(false);
+      }
+    })();
+  }, [forceRender]);
+
   const createContactForm = async (e) => {
     e.preventDefault();
     try {
       const { status } = await createContact(contact);
       if (status === 201) {
         setContact({});
+        setForceRender(!forceRender);
         navigate("/contacts");
       }
     } catch (error) {
