@@ -13,8 +13,18 @@ import {
   createContact,
   getAllContacts,
   getAllGroups,
+  deleteContact,
 } from "./services/contactService";
+
+import { confirmAlert } from "react-confirm-alert";
 import "./App.css";
+import {
+  COMMENT,
+  CURRENTLINE,
+  FOREGROUND,
+  PURPLE,
+  YELLOW,
+} from "./helpers/colors";
 
 const App = () => {
   const [contacts, setContacts] = useState([]);
@@ -89,6 +99,61 @@ const App = () => {
     });
   };
 
+  const confirm = (contactId, contactFullName) => {
+    confirmAlert({
+      customUI: ({ onClose }) => {
+        return (
+          <div
+            style={{
+              backgroundColor: CURRENTLINE,
+              border: `1px solid ${PURPLE}`,
+              borderRadius: "1em",
+            }}
+            className="p-4"
+          >
+            <h1 style={{ color: YELLOW }}>Delete Contact</h1>
+            <p style={{ color: FOREGROUND }}>
+              Are you sure to delete contact {contactFullName}?
+            </p>
+            <button
+              onClick={() => {
+                removeContact(contactId);
+                onClose();
+              }}
+              className="btn mx-2"
+              style={{ backgroundColor: PURPLE }}
+            >
+              I'm Sure.
+            </button>
+
+            <button
+              onClick={onClose}
+              className="btn"
+              style={{ backgroundColor: COMMENT }}
+            >
+              Cancel
+            </button>
+          </div>
+        );
+      },
+    });
+  };
+
+  const removeContact = async (contactId) => {
+    try {
+      setLoading(true);
+      const res = await deleteContact(contactId);
+      if (res) {
+        const { data: contactsData } = await getAllContacts();
+        setContacts(contactsData);
+        setLoading(false);
+      }
+    } catch (e) {
+      console.log(e.message);
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="App">
       <Navbar />
@@ -96,7 +161,13 @@ const App = () => {
         <Route path="/" element={<Navigate to="/contacts" />} />
         <Route
           path="/contacts"
-          element={<Contacts contacts={contacts} loading={loading} />}
+          element={
+            <Contacts
+              contacts={contacts}
+              loading={loading}
+              confirmDelete={confirm}
+            />
+          }
         />
         <Route
           path="/contacts/add"
