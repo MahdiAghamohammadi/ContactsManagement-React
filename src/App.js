@@ -28,6 +28,7 @@ import {
 
 const App = () => {
   const [contacts, setContacts] = useState([]);
+  const [getFilteredContacts, setFilteredContacts] = useState([]);
   const [contact, setContact] = useState({
     fullname: "",
     photo: "",
@@ -39,6 +40,7 @@ const App = () => {
   const [groups, setGroups] = useState([]);
   const [loading, setLoading] = useState(false);
   const [forceRender, setForceRender] = useState(false);
+  const [query, setQuery] = useState({ text: "" });
 
   const navigate = useNavigate();
 
@@ -51,6 +53,7 @@ const App = () => {
         const { data: groupsData } = await getAllGroups();
         // set data
         setContacts(contactsData);
+        setFilteredContacts(contactsData);
         setGroups(groupsData);
 
         setLoading(false);
@@ -154,16 +157,27 @@ const App = () => {
     }
   };
 
+  const contactSearch = (e) => {
+    setQuery({ ...query, text: e.target.value });
+    const allContacts = contacts.filter((contact) => {
+      return contact.fullname
+        .toLowerCase()
+        .includes(e.target.value.toLowerCase());
+    });
+
+    setFilteredContacts(allContacts);
+  };
+
   return (
     <div className="App">
-      <Navbar />
+      <Navbar query={query} search={contactSearch} />
       <Routes>
         <Route path="/" element={<Navigate to="/contacts" />} />
         <Route
           path="/contacts"
           element={
             <Contacts
-              contacts={contacts}
+              contacts={getFilteredContacts}
               loading={loading}
               confirmDelete={confirm}
             />

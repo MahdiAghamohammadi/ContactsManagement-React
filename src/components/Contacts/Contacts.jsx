@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { CURRENTLINE, ORANGE, PINK } from "../../helpers/colors";
 import Spinner from "../Spinner";
 import Contact from "./Contact";
@@ -9,10 +9,10 @@ const Contacts = ({ contacts, loading, confirmDelete }) => {
         <div className="grid">
           <div className="row">
             <div className="col">
-              <p className="h3">
+              <p className="h3 float-start">
                 <Link
                   to={"/contacts/add"}
-                  className="btn mx-2"
+                  className="btn m-2"
                   style={{ backgroundColor: PINK }}
                 >
                   Create a new contact
