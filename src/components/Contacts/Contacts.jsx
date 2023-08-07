@@ -1,8 +1,11 @@
+import { useContext } from "react";
+import { ContactContext } from "../../context/contactContext";
 import { Link } from "react-router-dom";
 import { CURRENTLINE, ORANGE, PINK } from "../../helpers/colors";
 import Spinner from "../Spinner";
 import Contact from "./Contact";
-const Contacts = ({ contacts, loading, confirmDelete }) => {
+const Contacts = () => {
+  const { contacts, loading, deleteContact } = useContext(ContactContext);
   return (
     <>
       <section className="container">
@@ -12,7 +15,7 @@ const Contacts = ({ contacts, loading, confirmDelete }) => {
               <p className="h3 float-start">
                 <Link
                   to={"/contacts/add"}
-                  className="btn m-2"
+                  className="btn mt-3"
                   style={{ backgroundColor: PINK }}
                 >
                   Create a new contact
@@ -35,7 +38,7 @@ const Contacts = ({ contacts, loading, confirmDelete }) => {
                 <Contact
                   key={c.id}
                   contact={c}
-                  confirmDelete={() => confirmDelete(c.id, c.fullname)}
+                  deleteContact={() => deleteContact(c.id, c.fullname)}
                 />
               ))
             ) : (

@@ -1,5 +1,8 @@
+import { useContext } from "react";
+import { ContactContext } from "../../context/contactContext";
 import { PURPLE, COMMENT } from "../../helpers/colors";
-const SearchContact = ({ query, search }) => {
+const SearchContact = () => {
+  const { contactQuery, contactSearch } = useContext(ContactContext);
   return (
     <>
       <div className="input-group mx-2 w-75" dir="ltr">
@@ -13,8 +16,8 @@ const SearchContact = ({ query, search }) => {
         <input
           type="text"
           dir="ltr"
-          value={query.text}
-          onChange={search}
+          value={contactQuery.text}
+          onChange={contactSearch}
           className="form-control"
           placeholder="search contact"
           aria-label="Search"
