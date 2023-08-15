@@ -124,17 +124,23 @@ const App = () => {
   };
 
   const removeContact = async (contactId) => {
+    // Copy
+    const allContacts = [...contacts];
     try {
-      setLoading(true);
-      const res = await deleteContact(contactId);
-      if (res) {
-        const { data: contactsData } = await getAllContacts();
-        setContacts(contactsData);
-        setLoading(false);
+      const updatedContacts = allContacts.filter((c) => c.id !== contactId);
+      setContacts(updatedContacts);
+      setFilteredContacts(updatedContacts);
+
+      // Sending delete Req to server
+      const { status } = await deleteContact(contactId);
+      if (status !== 200) {
+        setContacts(allContacts);
+        setFilteredContacts(allContacts);
       }
     } catch (e) {
       console.log(e.message);
-      setLoading(false);
+      setContacts(allContacts);
+      setFilteredContacts(allContacts);
     }
   };
 
@@ -157,7 +163,9 @@ const App = () => {
         contact,
         setContact,
         contacts,
+        setContacts,
         filteredContacts,
+        setFilteredContacts,
         contactQuery,
         groups,
         onContactChange,

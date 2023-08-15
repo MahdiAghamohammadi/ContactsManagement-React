@@ -5,7 +5,8 @@ import { CURRENTLINE, ORANGE, PINK } from "../../helpers/colors";
 import Spinner from "../Spinner";
 import Contact from "./Contact";
 const Contacts = () => {
-  const { contacts, loading, deleteContact } = useContext(ContactContext);
+  const { filteredContacts, loading, deleteContact } =
+    useContext(ContactContext);
   return (
     <>
       <section className="container">
@@ -33,8 +34,8 @@ const Contacts = () => {
         <section className="container">
           <div className="row">
             {/* Contact */}
-            {contacts.length > 0 ? (
-              contacts.map((c) => (
+            {filteredContacts.length > 0 ? (
+              filteredContacts.map((c) => (
                 <Contact
                   key={c.id}
                   contact={c}
