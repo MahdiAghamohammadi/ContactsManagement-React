@@ -13,14 +13,23 @@ const Contacts = () => {
         <div className="grid">
           <div className="row">
             <div className="col">
-              <p className="h3 float-start">
+              <p className="h3 float-start d-flex align-items-center gap-2">
                 <Link
                   to={"/contacts/add"}
                   className="btn mt-3"
                   style={{ backgroundColor: PINK }}
                 >
-                  Create a new contact
                   <i className="fa fa-plus-circle mx-2"></i>
+                  Create a new contact
+                </Link>
+
+                <Link
+                  to={"/contacts/import"}
+                  className="btn mt-3"
+                  style={{ backgroundColor: PINK }}
+                >
+                  <i className="fa fa-plus-circle mx-2"></i>
+                  Import Contacts
                 </Link>
               </p>
             </div>

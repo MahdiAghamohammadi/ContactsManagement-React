@@ -12,6 +12,7 @@ export const ContactContext = createContext({
   groups: [],
   onContactChange: () => {},
   createContact: () => {},
+  importContacts: () => {},
   updateContact: () => {},
   deleteContact: () => {},
   contactSearch: () => {},
